@@ -1,0 +1,133 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="./color-choose-button.html">
+
+<polymer-element name="settings-panel">
+  <template>
+    <style>
+    section {
+      padding:4px 16px;
+      color:white;
+    }
+    h2 {
+      font-size:1.1em;
+      color:#C5CAE9;
+    }
+    /*
+    h2::before {
+      content: '\000BB';
+    }
+    */
+    paper-slider {
+      width:150px;
+    }
+    paper-dropdown-menu {
+      box-sizing:border-box;
+      width:130px;
+      border-bottom: 1px solid white;
+    }
+    paper-dropdown {
+      position:absolute;
+    }
+    .dropdown {
+      position:absolute;
+      height:360px;
+      width:130px;
+    }
+    core-menu {
+      box-sizing:border-box;
+      width:130px;
+    }
+    paper-item {
+      overflow:hidden;
+      white-space:nowrap;
+      text-overflow:ellipsis;
+      width:120px;
+    }
+    ::shadow #label, ::shadow #arrow {
+      color:white;
+    }
+    ::shadow paper-radio-button::shadow #ink[checked] {
+      color: #3f51b5;
+    }
+    ::shadow paper-radio-button::shadow #onRadio {
+      background-color: #3f51b5;
+    }
+    ::shadow paper-radio-button::shadow #offRadio {
+      border-color: #c8c8c8;
+    }
+    ::shadow #toggleBar {
+      background-color: #c8c8c8;
+    }
+    ::shadow #toggleBar[checked] {
+      background-color: #3f51b5;
+    }
+    </style>
+
+    <section>
+      <h2>View</h2>
+      <div center horizontal layout>
+        <div flex>Wireframe</div>
+        <paper-toggle-button id="mesh" class="blue" on-trackstart={{cancelBubble}} on-trackx={{cancelBubble}} on-trackend={{cancelBubble}}></paper-toggle-button>
+      </div>
+
+      <!--
+      <div center horizontal layout>
+        <div flex>Bumpmap</div>
+        <paper-toggle-button id="bumpmap"></paper-toggle-button>
+      </div>
+
+      <div center horizontal layout>
+        <div flex>Toonshader</div>
+        <paper-toggle-button id="toon"></paper-toggle-button>
+      </div>
+      -->
+    </section>
+
+    <section>
+      <h2>Brush</h2>
+      <div center horizontal layout>
+        <div flex>Width</div>
+        <paper-slider id="line-width" pin min="30" max="100" step="10" value="50" on-trackstart={{cancelBubble}} on-trackx={{cancelBubble}} on-trackend={{cancelBubble}}></paper-slider>
+      </div>
+
+      <div center horizontal layout>
+        <div flex>Color</div>
+        <color-choose-button id="colorChooseButton"></color-choose-button>
+      </div>
+    </section>
+
+    <section>
+      <h2>Texture</h2>
+      <!--
+      <div center horizontal layout>
+        <div flex>File</div>
+        <paper-icon-button id="file" icon="file-upload" flex></paper-icon-button>
+      </div>
+      -->
+      <div center horizontal layout>
+        <div flex>Camera</div>
+        <paper-icon-button id="camera" icon="image:camera-alt"></paper-icon-button>
+      </div>
+
+      <div center horizontal layout>
+        <div flex>Clear</div>
+        <paper-icon-button id="clear-texture" icon="clear"></paper-icon-button>
+      </div>
+    </section>
+
+    <!--
+    <section>
+      <h2>Bodies</h2>
+    </section>
+    -->
+  </template>
+
+  <script>
+  Polymer({
+    get selectedColor() {
+      return '#' + (this.$ ? this.$.colorChooseButton.color : '0000FF');
+    },
+    cancelBubble: function(event) {event.cancelBubble = true;}
+  });
+  </script>
+</polymer-element>
