@@ -1,8 +1,3 @@
-node_modules
-dist
 !bower_components/poly2tri/dist
 .tmp
 .sass-cache
-app/bower_components
-test/bower_components
-*.swp
